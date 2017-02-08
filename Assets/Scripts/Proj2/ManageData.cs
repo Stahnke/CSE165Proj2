@@ -9,24 +9,12 @@ public class ManageData : MonoBehaviour {
     private ArrayList objects  = new ArrayList();
     private ArrayList allLines = new ArrayList();
 
-    void Start()
+    private void Start()
     {
-        //TESTING
         LoadData("myTest.txt");
-        SaveData("myTest.txt");
-        LoadData("myTest.txt");
-        SaveData("myTest.txt");
-        LoadData("myTest.txt");
-        SaveData("myTest.txt");
-        LoadData("myTest.txt");
-        SaveData("myTest.txt");
-        LoadData("myTest.txt");
-        SaveData("myTest.txt");
-        LoadData("myTest.txt");
-        SaveData("myTest.txt");
     }
 
-    void SaveData(string filename)
+    public void SaveData(string filename)
     {
         //Empty the lines to write to the file
         allLines.Clear();
@@ -69,7 +57,7 @@ public class ManageData : MonoBehaviour {
         System.IO.File.WriteAllLines(path, (string[])allLines.ToArray(typeof(string)));
     }
 
-    void LoadData(string filename)
+    public void LoadData(string filename)
     {
         //Delete all the objects currently on the scene
         print("Deleting scene");
@@ -125,5 +113,10 @@ public class ManageData : MonoBehaviour {
             }
         }
         file.Close();
+    }
+
+    public void AddObject(GameObject curObj)
+    {
+        objects.Add(curObj);
     }
 }

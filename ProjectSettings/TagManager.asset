@@ -8,6 +8,10 @@ TagManager:
   - switchBox
   - resetPlane
   - teleportPlane
+  - handButton
+  - prefabButton
+  - saveloadButton
+  - labObject
   layers:
   - Default
   - TransparentFX

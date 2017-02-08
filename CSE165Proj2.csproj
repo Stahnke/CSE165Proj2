@@ -73,6 +73,18 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\OVR\Scripts\OVRBoundary.cs" />
@@ -113,9 +125,15 @@
     <Compile Include="Assets\Scripts\Proj1\ModeBox.cs" />
     <Compile Include="Assets\Scripts\Proj1\RayCaster.cs" />
     <Compile Include="Assets\Scripts\Proj1\Teleporter.cs" />
+    <Compile Include="Assets\Scripts\Proj2\HandButton.cs" />
+    <Compile Include="Assets\Scripts\Proj2\HandSpawner.cs" />
     <Compile Include="Assets\Scripts\Proj2\HandTeleporter.cs" />
+    <Compile Include="Assets\Scripts\Proj2\MaintainRotation.cs" />
     <Compile Include="Assets\Scripts\Proj2\ManageData.cs" />
-    <Compile Include="Assets\Scripts\Proj2\TouchController.cs" />
+    <Compile Include="Assets\Scripts\Proj2\ObjectIndex.cs" />
+    <Compile Include="Assets\Scripts\Proj2\RayCaster2.cs" />
+    <Compile Include="Assets\Scripts\Proj2\TouchControllerLeft.cs" />
+    <Compile Include="Assets\Scripts\Proj2\TouchControllerRight.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\Files\myTest.txt" />
