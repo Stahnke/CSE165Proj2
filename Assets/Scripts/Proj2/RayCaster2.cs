@@ -22,6 +22,9 @@ public class RayCaster2 : MonoBehaviour {
     private const int SAVE_TYPE = 0;
     private const int LOAD_TYPE = 1;
 
+    private bool selected = false;
+    private GameObject selectedObject;
+
     private void Start()
     {
         PrefabButtons.SetActive(false);
@@ -38,28 +41,42 @@ public class RayCaster2 : MonoBehaviour {
             {
                 print("Raycast detect object: " + otherObject.name);
 
-                if(otherObject.CompareTag("handButton"))
+                if(selected == true)
+                {
+                    selected = false;
+                    Rigidbody[] rigidbodies = selectedObject.GetComponentsInChildren<Rigidbody>();
+                    for(int i = 0; i < rigidbodies.Length; i++)
+                    {
+                        rigidbodies[i].isKinematic = false;
+                        rigidbodies[i].GetComponent<MaintainRotation>().SendSelected(false);
+                    }
+                    selectedObject.transform.DetachChildren();
+                    Destroy(selectedObject);
+                    selectedObject = null;
+                }
+
+                else if(otherObject.CompareTag("handButton"))
                 {
                     int buttonIndex = otherObject.gameObject.GetComponent<HandButton>().GetButtonIndex();
                     otherObject.GetComponent<Animator>().SetTrigger("Select");
                     ChangeMode(buttonIndex);
                 }
 
-                if (otherObject.CompareTag("prefabButton"))
+                else if (otherObject.CompareTag("prefabButton"))
                 {
                     int buttonIndex = otherObject.gameObject.GetComponent<HandButton>().GetButtonIndex();
                     otherObject.GetComponent<Animator>().SetTrigger("Select");
                     ChangePrefab(buttonIndex);
                 }
 
-                if (otherObject.CompareTag("saveloadButton"))
+                else if (otherObject.CompareTag("saveloadButton"))
                 {
                     int buttonIndex = otherObject.gameObject.GetComponent<HandButton>().GetButtonIndex();
                     otherObject.GetComponent<Animator>().SetTrigger("Select");
                     SaveLoad(buttonIndex);
                 }
 
-                if (otherObject.CompareTag("teleportPlane") && mode == TELEPORT_MODE)
+                else if (otherObject.CompareTag("teleportPlane") && mode == TELEPORT_MODE)
                 {
                     GetComponentInParent<HandTeleporter>().Teleport(hit.point);
                     return true;
@@ -73,11 +90,14 @@ public class RayCaster2 : MonoBehaviour {
 
                 else if (otherObject.CompareTag("labObject") && mode == SELECT_MODE)
                 {
+                    selected = true;
                     print("Selected: " + otherObject.name);
                     GameObject emptyObject = Instantiate(emptyLocation, hit.point, this.transform.parent.rotation) as GameObject;
                     emptyObject.transform.SetParent(this.transform.parent);
                     otherObject.transform.SetParent(emptyObject.transform);
                     otherObject.transform.GetComponent<Rigidbody>().isKinematic = true;
+                    otherObject.GetComponent<MaintainRotation>().SendSelected(true);
+                    selectedObject = emptyObject;
                     return true;
                 }
             }

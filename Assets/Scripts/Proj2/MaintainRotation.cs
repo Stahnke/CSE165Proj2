@@ -12,10 +12,18 @@ public class MaintainRotation : MonoBehaviour {
     public bool yLock = false;
     public bool zLock = false;
 
+    private bool selected = false;
+
+    private GameObject rightHand;
+
+    private float curZ = 0;
+    private float previousZ = 0;
+
     // Use this for initialization
     void Start () {
-		
-	}
+        rightHand = GameObject.Find("RightHand");
+        //previousZ = rightHand.transform.eulerAngles.z;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -25,11 +33,25 @@ public class MaintainRotation : MonoBehaviour {
         float z = gameObject.transform.eulerAngles.z;
 
         if (xLock) x = xRot;
-        if (xLock) y = yRot;
-        if (xLock) z = zRot;
+        if (yLock) y = yRot;
+        if (zLock) z = zRot;
+
+        if (selected)
+        {
+            curZ = rightHand.transform.eulerAngles.z;
+            if (!xLock) x = (curZ);
+            if (!yLock) y = (curZ);
+            if (!zLock) z = (curZ);
+            //print(curZ - previousZ);
+        }
 
         gameObject.transform.eulerAngles = new Vector3(x,y,z);
 
-
+        //previousZ = curZ;
 	}
+
+    public void SendSelected(bool selected)
+    {
+        this.selected = selected;
+    }
 }
