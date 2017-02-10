@@ -129,6 +129,7 @@
     <Compile Include="Assets\Scripts\Proj2\HandSpawner.cs" />
     <Compile Include="Assets\Scripts\Proj2\HandTeleporter.cs" />
     <Compile Include="Assets\Scripts\Proj2\MaintainRotation.cs" />
+    <Compile Include="Assets\Scripts\Proj2\MaintainWorldRotation.cs" />
     <Compile Include="Assets\Scripts\Proj2\ManageData.cs" />
     <Compile Include="Assets\Scripts\Proj2\ObjectIndex.cs" />
     <Compile Include="Assets\Scripts\Proj2\RayCaster2.cs" />

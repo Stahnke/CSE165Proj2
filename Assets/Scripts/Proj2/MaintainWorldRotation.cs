@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MaintainRotation : MonoBehaviour {
+public class MaintainWorldRotation : MonoBehaviour {
 
     private float x;
     private float y;
@@ -32,9 +32,9 @@ public class MaintainRotation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        x = gameObject.transform.localEulerAngles.x;
-        y = gameObject.transform.localEulerAngles.y;
-        z = gameObject.transform.localEulerAngles.z;
+        x = gameObject.transform.eulerAngles.x;
+        y = gameObject.transform.eulerAngles.y;
+        z = gameObject.transform.eulerAngles.z;
 
         if (selected)
         {
@@ -49,7 +49,7 @@ public class MaintainRotation : MonoBehaviour {
         if (yLock) y = yRot;
         if (zLock) z = zRot;
 
-        gameObject.transform.localRotation = Quaternion.Euler(new Vector3(x,y,z));
+        gameObject.transform.rotation = Quaternion.Euler(new Vector3(x,y,z));
 
         previousZ = curZ;
 	}

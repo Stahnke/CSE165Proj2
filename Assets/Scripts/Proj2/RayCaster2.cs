@@ -22,8 +22,19 @@ public class RayCaster2 : MonoBehaviour {
     private const int SAVE_TYPE = 0;
     private const int LOAD_TYPE = 1;
 
+    private int prefabIndex = 0;
+
     private bool selected = false;
     private GameObject selectedObject;
+
+    private bool groupingMode = false;
+
+    private GameObject groupObject;
+
+    private bool switchedOn = false;
+    private bool switchedOff = true;
+
+    ArrayList otherObjects = new ArrayList();
 
     private void Start()
     {
@@ -34,28 +45,46 @@ public class RayCaster2 : MonoBehaviour {
 
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
 
-        if (Physics.Raycast(transform.position, fwd, out hit, 100))
+        if (selected == true)
+        {
+            otherObjects.Clear();
+            selected = false;
+            Rigidbody[] rigidbodies = selectedObject.GetComponentsInChildren<Rigidbody>();
+            Collider[] colliders = selectedObject.GetComponentsInChildren<Collider>();
+            Light[] lights = selectedObject.GetComponentsInChildren<Light>();
+            for (int i = 0; i < rigidbodies.Length; i++)
+            {
+                rigidbodies[i].isKinematic = false;
+                //rigidbodies[i].GetComponent<MaintainRotation>().SendSelected(false);
+            }
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                colliders[i].enabled = true;
+            }
+
+            for (int i = 0; i < lights.Length; i++)
+            {
+                lights[i].enabled = false;
+            }
+
+            selectedObject.transform.DetachChildren();
+            Destroy(selectedObject);
+            selectedObject = null;
+        }
+
+        else if (Physics.Raycast(transform.position, fwd, out hit, 100))
         {
             otherObject = hit.collider.gameObject;
+    
+
             if (otherObject != null)
             {
                 print("Raycast detect object: " + otherObject.name);
 
-                if(selected == true)
-                {
-                    selected = false;
-                    Rigidbody[] rigidbodies = selectedObject.GetComponentsInChildren<Rigidbody>();
-                    for(int i = 0; i < rigidbodies.Length; i++)
-                    {
-                        rigidbodies[i].isKinematic = false;
-                        rigidbodies[i].GetComponent<MaintainRotation>().SendSelected(false);
-                    }
-                    selectedObject.transform.DetachChildren();
-                    Destroy(selectedObject);
-                    selectedObject = null;
-                }
 
-                else if(otherObject.CompareTag("handButton"))
+
+                if(otherObject.CompareTag("handButton"))
                 {
                     int buttonIndex = otherObject.gameObject.GetComponent<HandButton>().GetButtonIndex();
                     otherObject.GetComponent<Animator>().SetTrigger("Select");
@@ -82,13 +111,19 @@ public class RayCaster2 : MonoBehaviour {
                     return true;
                 }
 
-                else if (otherObject.CompareTag("teleportPlane") && mode == SPAWN_MODE)
+                else if (otherObject.CompareTag("teleportPlane") && mode == SPAWN_MODE && prefabIndex != 5)
                 {
-                    GetComponentInParent<HandSpawner>().Spawn(hit.point, curPrefab);
+                    GetComponentInParent<HandSpawner>().Spawn(hit.point, curPrefab.transform.rotation, curPrefab);
                     return true;
                 }
 
-                else if (otherObject.CompareTag("labObject") && mode == SELECT_MODE)
+                else if (otherObject.CompareTag("wallPlane") && mode == SPAWN_MODE && prefabIndex == 5)
+                {
+                    GetComponentInParent<HandSpawner>().Spawn(hit.point, otherObject.transform.rotation, curPrefab);
+                    return true;
+                }
+
+                else if (otherObject.CompareTag("labObject") && mode == SELECT_MODE && groupingMode == false)
                 {
                     selected = true;
                     print("Selected: " + otherObject.name);
@@ -96,8 +131,18 @@ public class RayCaster2 : MonoBehaviour {
                     emptyObject.transform.SetParent(this.transform.parent);
                     otherObject.transform.SetParent(emptyObject.transform);
                     otherObject.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    otherObject.GetComponent<MaintainRotation>().SendSelected(true);
+                    otherObject.transform.GetComponent<Collider>().enabled = false;
+                    emptyObject.GetComponent<MaintainWorldRotation>().SendSelected(true);
                     selectedObject = emptyObject;
+                    return true;
+                }
+
+                else if (otherObject.CompareTag("labObject") && mode == SELECT_MODE && groupingMode == true)
+                {
+                    print("Grouped: " + otherObject.name);
+
+                    otherObject.GetComponent<Light>().enabled = true;
+                    otherObjects.Add(otherObject);
                     return true;
                 }
             }
@@ -127,6 +172,7 @@ public class RayCaster2 : MonoBehaviour {
     void ChangePrefab(int index)
     {
         curPrefab = prefabs[index];
+        prefabIndex = index;
         print("curPrefab = " + curPrefab.name);
     }
 
@@ -139,6 +185,46 @@ public class RayCaster2 : MonoBehaviour {
         else if (index == LOAD_TYPE)
         {
             DataManager.GetComponent<ManageData>().LoadData("myTest.txt");
+        }
+    }
+
+    public void GroupingOnOff(bool groupingMode)
+    {
+        this.groupingMode = groupingMode;
+        if(groupingMode == true && switchedOff == true)
+        {
+            switchedOn = true;
+            switchedOff = false;
+            groupObject = Instantiate(emptyLocation, hit.point, this.transform.parent.rotation) as GameObject;
+            groupObject.transform.SetParent(this.transform.parent);
+            selectedObject = groupObject;
+        }
+        else if(groupingMode == false && switchedOn == true)
+        {
+            selected = true;
+            switchedOn = false;
+            switchedOff = true;
+
+            groupObject.GetComponent<MaintainWorldRotation>().SendSelected(true);
+
+            for (int i = 0; i < otherObjects.Count; i++)
+            {
+                ((GameObject)otherObjects[i]).transform.SetParent(groupObject.transform);
+            }
+
+            Rigidbody[] rigidbodies = selectedObject.GetComponentsInChildren<Rigidbody>();
+            Collider[] colliders = selectedObject.GetComponentsInChildren<Collider>();
+            
+            for (int i = 0; i < rigidbodies.Length; i++)
+            {
+                rigidbodies[i].isKinematic = true;
+                //rigidbodies[i].GetComponent<MaintainRotation>().SendSelected(true);
+            }
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                colliders[i].enabled = false;
+            }
         }
     }
 }

@@ -30,21 +30,24 @@ public class TouchControllerRight : MonoBehaviour
 
             if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, controller) > 0)
             {
-                //print(controller.ToString() + ": Trigger on");
+                
             }
 
             if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, controller) <= 0)
             {
+                
                 //print(controller.ToString() + ": Trigger off");
             }
 
             if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller) > 0)
             {
+                rayCaster2.GetComponent<RayCaster2>().GroupingOnOff(true);
                 //print(controller.ToString() + ": Grip on");
             }
 
             if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller) <= 0)
             {
+                rayCaster2.GetComponent<RayCaster2>().GroupingOnOff(false);
                 //print(controller.ToString() + ": Grip off");
             }
         }

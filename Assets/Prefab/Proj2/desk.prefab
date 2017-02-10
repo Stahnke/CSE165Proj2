@@ -178,7 +178,8 @@ GameObject:
   - component: {fileID: 65357231385331304}
   - component: {fileID: 114573931185727122}
   - component: {fileID: 54861200010500590}
-  - component: {fileID: 114799733045575604}
+  - component: {fileID: 114450930950051180}
+  - component: {fileID: 108050417805246264}
   m_Layer: 0
   m_Name: desk
   m_TagString: labObject
@@ -2635,6 +2636,57 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.35, y: 0.74, z: 0.475}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!108 &108050417805246264
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1261474082099138}
+  m_Enabled: 0
+  serializedVersion: 7
+  m_Type: 2
+  m_Color: {r: 0.9034482, g: 1, b: 0, a: 1}
+  m_Intensity: 2.28
+  m_Range: 2.97
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!114 &114450930950051180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1261474082099138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60d399e09c67a9b4fb48aff9098fefe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xRot: -90
+  yRot: 0
+  zRot: 0
+  xLock: 1
+  yLock: 0
+  zLock: 0
 --- !u!114 &114573931185727122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2647,21 +2699,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 3
---- !u!114 &114799733045575604
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1261474082099138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d399e09c67a9b4fb48aff9098fefe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xRot: -90
-  yRot: 90
-  zRot: 0
-  xLock: 1
-  yLock: 1
-  zLock: 0
-  rightHand: {fileID: 0}

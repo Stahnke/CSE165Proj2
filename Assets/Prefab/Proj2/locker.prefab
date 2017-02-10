@@ -1579,6 +1579,7 @@ GameObject:
   - component: {fileID: 54606352824797910}
   - component: {fileID: 114694583361402922}
   - component: {fileID: 114156176661045342}
+  - component: {fileID: 108102364323349004}
   m_Layer: 0
   m_Name: locker
   m_TagString: labObject
@@ -7632,6 +7633,40 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.121, y: 0.1175, z: 0.7}
   m_Center: {x: 0.005, y: 0, z: 0}
+--- !u!108 &108102364323349004
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1567561022472566}
+  m_Enabled: 0
+  serializedVersion: 7
+  m_Type: 2
+  m_Color: {r: 0.90344834, g: 1, b: 0, a: 1}
+  m_Intensity: 2.38
+  m_Range: 2.97
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!114 &114156176661045342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7647,7 +7682,7 @@ MonoBehaviour:
   yRot: 180
   zRot: 0
   xLock: 1
-  yLock: 1
+  yLock: 0
   zLock: 0
 --- !u!114 &114694583361402922
 MonoBehaviour:

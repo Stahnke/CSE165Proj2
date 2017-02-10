@@ -12,6 +12,7 @@ TagManager:
   - prefabButton
   - saveloadButton
   - labObject
+  - wallPlane
   layers:
   - Default
   - TransparentFX
