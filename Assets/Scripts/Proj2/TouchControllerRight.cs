@@ -7,6 +7,7 @@ public class TouchControllerRight : MonoBehaviour
 
     public OVRInput.Controller controller;
     public GameObject rayCaster2;
+    public GameObject virtualHand;
 
     // Update is called once per frame
     void Update()
@@ -26,6 +27,7 @@ public class TouchControllerRight : MonoBehaviour
             if (OVRInput.GetDown(OVRInput.Button.Two, controller))
             {
                 print(controller.ToString() + ": Two");
+                virtualHand.GetComponent<VirtualHand>().Launch();
             }
 
             if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, controller) > 0)

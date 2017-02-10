@@ -132,7 +132,9 @@ public class RayCaster2 : MonoBehaviour {
                     otherObject.transform.SetParent(emptyObject.transform);
                     otherObject.transform.GetComponent<Rigidbody>().isKinematic = true;
                     otherObject.transform.GetComponent<Collider>().enabled = false;
-                    emptyObject.GetComponent<MaintainWorldRotation>().SendSelected(true);
+                    if (otherObject.GetComponent<ObjectIndex>().GetObjectIndex() != 5)
+                        emptyObject.GetComponent<MaintainWorldRotation>().SendSelected(true);
+                    else emptyObject.GetComponent<MaintainWorldRotation>().yLock = true;
                     selectedObject = emptyObject;
                     return true;
                 }

@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 114055523761322820}
   - component: {fileID: 114837454258301890}
   - component: {fileID: 108506733330971974}
+  - component: {fileID: 114486290881307520}
   m_Layer: 0
   m_Name: whiteboard
   m_TagString: labObject
@@ -2235,7 +2236,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1397987693221566}
   serializedVersion: 2
-  m_Mass: 10000
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -2301,6 +2302,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 5
+--- !u!114 &114486290881307520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1397987693221566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2ba3aa461c91a43b7130ff19acc3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  yPos: 0
+  zPos: 0
+  xLock: 1
+  yLock: 0
+  zLock: 0
 --- !u!114 &114837454258301890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2312,9 +2330,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60d399e09c67a9b4fb48aff9098fefe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xRot: -90
+  xRot: 0
   yRot: 0
-  zRot: 90
+  zRot: 0
   xLock: 0
   yLock: 0
   zLock: 0

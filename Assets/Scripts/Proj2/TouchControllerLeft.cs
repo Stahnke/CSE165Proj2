@@ -6,10 +6,14 @@ public class TouchControllerLeft : MonoBehaviour {
 
     public OVRInput.Controller controller;
     public GameObject buttonsWindow;
+    public GameObject virtualHand;
+    public GameObject rayCasterRender;
 
     private void Start()
     {
         buttonsWindow.SetActive(false);
+        virtualHand.SetActive(false);
+        rayCasterRender.GetComponent<LineRenderer>().enabled = true;
     }
 
 	// Update is called once per frame
@@ -22,10 +26,14 @@ public class TouchControllerLeft : MonoBehaviour {
             if (OVRInput.GetDown(OVRInput.Button.One, controller))
             {
                 print(controller.ToString() + ": One");
+                virtualHand.SetActive(true);
+                rayCasterRender.GetComponent<LineRenderer>().enabled = false;
             }
 
             if (OVRInput.GetDown(OVRInput.Button.Two, controller))
             {
+                virtualHand.SetActive(false);
+                rayCasterRender.GetComponent<LineRenderer>().enabled = true;
                 print(controller.ToString() + ": Two");
             }
 
