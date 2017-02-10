@@ -9,8 +9,16 @@ public class ManageData : MonoBehaviour {
     private ArrayList objects  = new ArrayList();
     private ArrayList allLines = new ArrayList();
 
+    public GameObject saver;
+
     private void Start()
     {
+        /*Transform[] objects = saver.GetComponentsInChildren<Transform>();
+        for(int x = 0; x < objects.Length; x++)
+        {
+            AddObject(objects[x].gameObject);
+        }
+        SaveData("myTest.txt");*/
         LoadData("myTest.txt");
     }
 
