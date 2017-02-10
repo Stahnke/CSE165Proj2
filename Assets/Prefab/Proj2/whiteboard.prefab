@@ -300,9 +300,9 @@ GameObject:
   - component: {fileID: 54927466430980706}
   - component: {fileID: 65344095462065908}
   - component: {fileID: 114055523761322820}
-  - component: {fileID: 114837454258301890}
   - component: {fileID: 108506733330971974}
   - component: {fileID: 114486290881307520}
+  - component: {fileID: 114466051085111658}
   m_Layer: 0
   m_Name: whiteboard
   m_TagString: labObject
@@ -1097,14 +1097,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1397987693221566}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 9.28, y: 4.69, z: 9.84}
   m_LocalScale: {x: 3.8224287, y: 3.8224263, z: 3.8224263}
   m_Children:
   - {fileID: 4021589067168050}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
 --- !u!4 &4249033402675256
 Transform:
   m_ObjectHideFlags: 1
@@ -2302,6 +2302,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 5
+--- !u!114 &114466051085111658
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1397987693221566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceed4fe6a2406624eac37bd4bf0a9106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xRot: -90
+  yRot: 0
+  zRot: 90
+  xLock: 1
+  yLock: 1
+  zLock: 1
 --- !u!114 &114486290881307520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2317,22 +2334,5 @@ MonoBehaviour:
   yPos: 0
   zPos: 0
   xLock: 1
-  yLock: 0
-  zLock: 0
---- !u!114 &114837454258301890
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1397987693221566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d399e09c67a9b4fb48aff9098fefe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xRot: 0
-  yRot: 0
-  zRot: 0
-  xLock: 0
   yLock: 0
   zLock: 0

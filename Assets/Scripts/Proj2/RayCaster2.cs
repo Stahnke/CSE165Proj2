@@ -143,9 +143,12 @@ public class RayCaster2 : MonoBehaviour {
                 {
                     print("Grouped: " + otherObject.name);
 
-                    otherObject.GetComponent<Light>().enabled = true;
-                    otherObjects.Add(otherObject);
-                    return true;
+                    if (otherObject.GetComponent<ObjectIndex>().GetObjectIndex() != 5)
+                    {
+                        otherObject.GetComponent<Light>().enabled = true;
+                        otherObjects.Add(otherObject);
+                        return true;
+                    }
                 }
             }
         }
